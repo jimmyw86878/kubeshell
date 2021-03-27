@@ -4,9 +4,6 @@ LABEL stage=build
 
 ENV GO111MODULE on
 
-#ARG GOLANG_PROXY_IP
-#ENV GOPROXY=http://${GOLANG_PROXY_IP}:3000
-
 WORKDIR /go/src/kubeshell
 
 COPY ./kubeshell /go/src/kubeshell
