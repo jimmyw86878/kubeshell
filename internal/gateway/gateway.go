@@ -19,7 +19,8 @@ import (
 func StartServeK8S(c chan os.Signal) {
 	r := chi.NewRouter()
 	r.Mount("/kubeshell/v1", v1.K8SMainRouter())
-	srv := http.Server{Addr: ":5666", Handler: r}
+	port := loadStrEnv("port", "5666")
+	srv := http.Server{Addr: fmt.Sprintf(":%s", port), Handler: r}
 	signal.Notify(c, os.Interrupt)
 	go func() {
 		for range c {
@@ -29,6 +30,14 @@ func StartServeK8S(c chan os.Signal) {
 			srv.Shutdown(ctx)
 		}
 	}()
-	fmt.Println(fmt.Sprintf("Start kubeshell http service at port: %d", 5666))
+	fmt.Println(fmt.Sprintf("Start kubeshell http service at port: %s", port))
 	srv.ListenAndServe()
+}
+
+func loadStrEnv(envName string, defaultValue string) string {
+	res := defaultValue
+	if val, exists := os.LookupEnv(envName); exists {
+		res = val
+	}
+	return res
 }
