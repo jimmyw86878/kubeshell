@@ -16,8 +16,6 @@ spec:
           volumeMounts:
             - mountPath: /.kube/config
               name: config
-            - mountPath: /home/template
-              name: template
           securityContext:
             privileged: true
       volumes:
