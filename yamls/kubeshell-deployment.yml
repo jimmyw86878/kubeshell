@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubeshell-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kubeshell
+    spec:
+      containers:
+        - name: kubeshell
+          image: kubeshell:latest
+          imagePullPolicy:  IfNotPresent
+          volumeMounts:
+            - mountPath: /.kube/config
+              name: config
+            - mountPath: /home/template
+              name: template
+          securityContext:
+            privileged: true
+      volumes:
+      - name: config
+        hostPath:
+          path: /home/config
+          type: File
+      serviceAccountName:
+        privilegeduser
+
+  selector:
+    matchLabels:
+      app: kubeshell
