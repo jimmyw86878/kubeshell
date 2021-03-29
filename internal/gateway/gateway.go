@@ -3,10 +3,7 @@ package gateway
 import (
 	"context"
 	"fmt"
-
-	//"gatekeeper/internal/constants"
-
-	v1 "gatekeeper/internal/route/v1"
+	v1 "kubeshell/internal/route/v1"
 	"net/http"
 	"os"
 	"os/signal"

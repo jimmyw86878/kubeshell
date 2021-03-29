@@ -1,4 +1,4 @@
-module gatekeeper
+module kubeshell
 
 go 1.12
 

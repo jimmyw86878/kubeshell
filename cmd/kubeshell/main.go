@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gatekeeper/internal/gateway"
+	"kubeshell/internal/gateway"
 	"os"
 )
 
