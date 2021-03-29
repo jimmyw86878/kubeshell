@@ -15,7 +15,7 @@ func TestHealthCheck(t *testing.T) {
 	rr := httptest.NewRecorder()
 	handler := http.HandlerFunc(v1.Health)
 	handler.ServeHTTP(rr, req)
-	if status := rr.Code; status != http.StatusNoContent {
+	if status := rr.Code; status != http.StatusOK {
 		t.Errorf("wrong status code: %v want %v", status, http.StatusNoContent)
 	}
 }
