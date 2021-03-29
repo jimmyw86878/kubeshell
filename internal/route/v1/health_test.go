@@ -1,7 +1,7 @@
 package v1_test
 
 import (
-	v1 "gatekeeper/internal/route/v1"
+	v1 "kubeshell/internal/route/v1"
 	"net/http"
 	"net/http/httptest"
 	"testing"
